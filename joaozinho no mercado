@@ -1,0 +1,37 @@
+#include <iostream>
+#include <iomanip>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    int T;
+    cout << "Informe o numero de casos de teste (T): ";
+    cin >> T;
+
+    while (T--) {
+        int D, N;
+        cout << "Informe a quantia de dinheiro (D) e o numero de marcas disponiveis (N): ";
+        cin >> D >> N;
+
+        vector<float> prices(N);
+        cout << "Informe os precos das " << N << " marcas: ";
+        for (int i = 0; i < N; i++) {
+            cin >> prices[i];
+        }
+
+        float max_change = 0;
+        for (int i = 0; i < N; i++) {
+            int units = D / prices[i];
+            float change = D - units * prices[i];
+
+            if (units > 0 && change > max_change) {
+                max_change = change;
+            }
+        }
+
+        cout << "Maior troco que Joaozinho pode receber: " << fixed << setprecision(2) << max_change << endl;
+    }
+
+    return 0;
+}
